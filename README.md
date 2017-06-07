@@ -1,5 +1,101 @@
 # Coding-Standards For C#
 
+## Introduction
+This document describes rules and recommendations for developing applications and class libraries using the C#
+Language. The goal is to define guidelines to enforce consistent style and formatting and help developers avoid common
+pitfalls and mistakes.
+Specifically, this document covers Naming Conventions, Coding Style, Language Usage, and Object Model Design. 
+
+### Scope
+This document only applies to the C# Language and the .NET Framework Common Type System(CTS) it implements.
+Although the C# language is implemented alongside the .NET Framework, this document does not address usage of
+.NET Framework class libraries. However, common patterns and problems related to C#’s usage of the .NET Framework
+are addressed in a limited fashion.
+Even though standards for curly-braces ({ or }) and white space(tabs vs. spaces) are always controversial, these topics
+are addressed here to ensure greater consistency and maintainability of source code. 
+
+### Terminology & Definitions
+The following terminology is referenced throughout this document:
+Access Modifier
+C# keywords public, protected, internal, and private declare the allowed code-accessibility of types
+and their members. Although default access modifiers vary, classes and most other members use the default
+of private. Notable exceptions are interfaces and enums which both default to public.
+Camel Case
+A word with the first letter lowercase, and the first letter of each subsequent word-part capitalized.
+ Example: customerName
+Common Type System
+The .NET Framework common type system (CTS) defines how types are declared, used, and managed. All
+native C# types are based upon the CTS to ensure support for cross-language integration.
+Identifier
+A developer defined token used to uniquely name a declared object or object instance.
+ Example: 
+ ```
+ public class MyClassName MyClassNameIdentifier Identifier { … }
+ ```
+Magic Number
+Any numeric literal used within an expression (or to initialize a variable) that does not have an obvious or wellknown
+meaning. This usually excludes the integers 0 or 1 and any other numeric equivalent precision that
+evaluates as zero.
+Pascal Case
+A word with the first letter capitalized, and the first letter of each subsequent word-part capitalized.
+ Example: CustomerName
+Premature Generalization
+As it applies to object model design; this is the act of creating abstractions within an object model not based
+upon concrete requirements or a known future need for the abstraction. In simplest terms: “Abstraction for
+the sake of Abstraction.” 
+
+
+### Naming Conventions Quick Guide
+“c” = camelCase
+“P” = PascalCase
+“_” = Prefix with _Underscore
+“x” = Not Applicable.
+
+|Identifier | Public | Protected | Internal | Private | Notes |
+|-----------|--------|-----------|----------|---------|-------|
+|Project File | P | x | x | x | Match Assembly & Namespace. |
+|Source File | P | x | x | x | Match contained class. |
+|Other Files | P | x | x | x | Apply where possible. |
+|Namespace | P | x | x | x | Partial Project/Assembly match. |
+|Class or Struct | P | P | P | P | Add suffix of subclass. |
+|Interface | P | P | P | P | Prefix with a capital I. |
+|Generic Class | P | P | P | P | Use T or K as Type identifier. |
+|Method | P | P | P | P | Use a Verb or Verb-Object pair. |
+|Property | P | P | P | P | Do not prefix with Get or Set. |
+|Field | P | P | P | _c | Only use Private fields. No Hungarian Notation! |
+|Constant | P | P | P | _c | |
+|Static Field | P | P | P | _c | Only use Private fields. |
+|Enum | P | P | P | P | Options are also PascalCase. |
+|Delegate | P | P | P | P | |
+|Event | P | P | P | P | |
+|Inline Variable | x | x | x | c | Avoid single-character and enumerated names. |
+|Parameter | x | x | x | c | | 
+
+### Coding Style
+| Code | Style |
+|------|-------|
+|Source Files | One Namespace per file and one class per file. |
+|Curly Braces | On new line. Always use braces when optional. |
+|Indention | Use tabs with size of 4. |
+|Comments | Use // or /// but not /* … */ and do not flowerbox. |
+|Variables | One variable per declaration. |
+|Native Data Types | Use built-in C# native data types vs .NET CTS types. (Use int NOT Int32) |
+|Enums | Avoid changing default type. |
+|Generics | Prefer Generic Types over standard or strong-typed classes. |
+|Properties | Never prefix with Get or Set. |
+|Methods | Use a maximum of 7 parameters. |
+|base and this | Use only in constructors or within an override. |
+|Ternary conditions | Avoid complex conditions. |
+|foreach statements | Do not modify enumerated items within a foreach statement. |
+|Conditionals | Avoid evaluating Boolean conditions against true or false. No embedded assignment. Avoid embedded method invocation. |
+|Exceptions | Do not use exceptions for flow control. Use throw; not throw e; when re-throwing. Only catch what you can handle. Use validation to avoid exceptions. Derive from Execption not ApplicationException. |
+|Events | Always check for null before invoking. |
+|Locking | Use lock() not Monitor.Enter(). Do not lock on an object type or “this”. Do lock on private objects.|
+|Dispose() & Close() | Always invoke them if offered, declare where needed. |
+|Finalizers | Avoid. Use the C# Destructors. Do not create Finalize() method. |
+|AssemblyVersion | Increment manually. |
+|ComVisibleAttribute | Set to false for all assemblies. |
+
 ## Naming Conventions
 Consistency is the key to maintainable code. This statement is most true for naming your projects, source files, and
 identifiers including Fields, Variables, Properties, Methods, Parameters, Classes, Interfaces, and Namespaces.
