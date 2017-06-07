@@ -1,2 +1,413 @@
-# Coding-Standards
-Guide for Standards for C#
+# Coding-Standards For C#
+
+##Naming Conventions
+Consistency is the key to maintainable code. This statement is most true for naming your projects, source files, and
+identifiers including Fields, Variables, Properties, Methods, Parameters, Classes, Interfaces, and Namespaces.
+2.1 General Guidelines
+1. Always use Camel Case or Pascal Case names.
+2. Avoid ALL CAPS and all lowercase names. Single lowercase words or letters are acceptable.
+3. Do not create declarations of the same type (namespace, class, method, property, field, or parameter) and
+access modifier (protected, public, private, internal) that vary only by capitalization.
+4. Do not use names that begin with a numeric character.
+5. Do add numeric suffixes to identifier names.
+6. Always choose meaningful and specific names.
+7. Always err on the side of verbosity not terseness.
+8. Variables and Properties should describe an entity not the type or size.
+9. Do not use Hungarian Notation!
+Example: strName or iCount
+10. Avoid using abbreviations unless the full name is excessive.
+11. Avoid abbreviations longer than 5 characters.
+12. Any Abbreviations must be widely known and accepted.
+13. Use uppercase for two-letter abbreviations, and Pascal Case for longer abbreviations.
+14. Do not use C# reserved words as names.
+15. Avoid naming conflicts with existing .NET Framework namespaces, or types.
+16. Avoid adding redundant or meaningless prefixes and suffixes to identifiers
+Example:
+// Bad!
+public enum ColorsEnum {…}
+public class CVehicle {…}
+public struct RectangleStruct {…}
+17. Do not include the parent class name within a property name.
+Example: Customer.Name NOT Customer.CustomerName
+18. Try to prefix Boolean variables and properties with “Can”, “Is” or “Has”.
+19. Append computational qualifiers to variable names like Average, Count, Sum, Min, and Max where
+appropriate.
+20. When defining a root namespace, use a Product, Company, or Developer Name as the root. Example:
+My.StringUtilities
+
+##Coding Style
+Coding style causes the most inconsistency and controversy between developers. Each developer has a preference, and
+rarely are two the same. However, consistent layout, format, and organization are key to creating maintainable code.
+The following sections describe the preferred way to implement C# source code in order to create readable, clear, and
+consistent code that is easy to understand and maintain.
+3.1 Formatting
+1. Never declare more than 1 namespace per file.
+2. Avoid putting multiple classes in a single file.
+3. Always place curly braces ({ and }) on a new line.
+4. Always use curly braces ({ and }) in conditional statements.
+5. Always use a Tab & Indention size of 4.
+6. Declare each variable independently – not in the same statement.
+7. Place namespace “using” statements together at the top of file. Group .NET namespaces above custom
+namespaces.
+8. Group internal class implementation by type in the following order:
+a. Member variables.
+b. Constructors & Finalizers.
+c. Nested Enums, Structs, and Classes.
+d. Properties
+e. Methods
+9. Sequence declarations within type groups based upon access modifier and visibility:
+a. Public
+b. Protected
+c. Internal
+d. Private
+10. Segregate interface Implementation by using #region statements.
+11. Append folder-name to namespace for source files within sub-folders.
+12. Recursively indent all code blocks contained within braces.
+13. Use white space (CR/LF, Tabs, etc) liberally to separate and organize code.
+14. Only declare related attribute declarations on a single line, otherwise stack each attribute as a separate
+declaration.
+Example:
+// Bad!
+[Attrbute1, Attrbute2, Attrbute3]
+public class MyClass
+{…}
+// Good!
+[Attrbute1, RelatedAttribute2]
+[Attrbute3]
+[Attrbute4]
+public class MyClass
+{…}
+15. Place Assembly scope attribute declarations on a separate line.
+16. Place Type scope attribute declarations on a separate line.
+17. Place Method scope attribute declarations on a separate line.
+18. Place Member scope attribute declarations on a separate line.
+19. Place Parameter attribute declarations inline with the parameter.
+20. If in doubt, always err on the side of clarity and consistency. 
+
+3.2 Code Commenting
+21. All comments should be written in the same language, be grammatically correct, and contain appropriate
+punctuation.
+22. Use // or /// but never /* … */
+23. Do not “flowerbox” comment blocks.
+Example:
+ // ***************************************
+ // Comment block
+ // ***************************************
+24. Use inline-comments to explain assumptions, known issues, and algorithm insights.
+25. Do not use inline-comments to explain obvious code. Well written code is self documenting.
+26. Only use comments for bad code to say “fix this code” – otherwise remove, or rewrite the code!
+27. Include comments using Task-List keyword flags to allow comment-filtering.
+Example:
+// TODO: Place Database Code Here
+// UNDONE: Removed P\Invoke Call due to errors
+// HACK: Temporary fix until able to refactor
+28. Always apply C# comment-blocks (///) to public, protected, and internal declarations.
+29. Only use C# comment-blocks for documenting the API.
+30. Always include <summary> comments. Include <param>, <return>, and <exception> comment
+sections where applicable.
+31. Include <see cref=””/> and <seeAlso cref=””/> where possible.
+32. Always add CDATA tags to comments containing code and other embedded markup in order to avoid
+encoding issues.
+Example:
+/// <example>
+/// Add the following key to the “appSettings” section of your config:
+/// <code><![CDATA[
+/// <configuration>
+/// <appSettings>
+/// <add key=”mySetting” value=”myValue”/>
+/// </appSettings>
+/// </configuration>
+/// ]]></code> >
+/// </example> 
+
+##Language Usage
+4.1 General
+1. Do not omit access modifiers. Explicitly declare all identifiers with the appropriate access modifier instead of
+allowing the default.
+Example:
+// Bad!
+Void WriteEvent(string message)
+{…}
+// Good!
+private Void WriteEvent(string message)
+{…}
+2. Do not use the default (“1.0.*”) versioning scheme. Increment the AssemblyVersionAttribute value
+manually.
+3. Set the ComVisibleAttribute to false for all assemblies.
+4. Only selectively enable the ComVisibleAttribute for individual classes when needed.
+Example:
+[assembly: ComVisible(false)]
+[ComVisible(true)]
+public MyClass
+{…}
+5. Consider factoring classes containing unsafe code blocks into a separate assembly.
+6. Avoid mutual references between assemblies.
+4.2 Variables & Types
+7. Try to initialize variables where you declare them.
+8. Always choose the simplest data type, list, or object required.
+9. Always use the built-in C# data type aliases, not the .NET common type system (CTS).
+Example:
+short NOT System.Int16
+int NOT System.Int32
+long NOT System.Int64
+string NOT System.String
+10. Only declare member variables as private. Use properties to provide access to them with public,
+protected, or internal access modifiers.
+11. Try to use int for any non-fractional numeric values that will fit the int datatype - even variables for nonnegative
+numbers.
+12. Only use long for variables potentially containing values too large for an int.
+13. Try to use double for fractional numbers to ensure decimal precision in calculations.
+14. Only use float for fractional numbers that will not fit double or decimal.
+15. Avoid using float unless you fully understand the implications upon any calculations.
+16. Try to use decimal when fractional numbers must be rounded to a fixed precision for calculations. Typically
+this will involve money.
+17. Avoid using sbyte, short, uint, and ulong unless it is for interop (P/Invoke) with native libraries. 
+ Avoid specifying the type for an enum - use the default of int unless you have an explicit need for long (very
+uncommon).
+19. Avoid using inline numeric literals (magic numbers). Instead, use a Constant or Enum.
+20. Avoid declaring string literals inline. Instead use Resources, Constants, Configuration Files, Registry or other
+data sources.
+21. Declare readonly or static readonly variables instead of constants for complex types.
+22. Only declare constants for simple types.
+23. Avoid direct casts. Instead, use the “as” operator and check for null.
+Example:
+object dataObject = LoadData();
+DataSet ds = dataObject as DataSet;
+if(ds != null)
+{…}
+24. Always prefer C# Generic collection types over standard or strong-typed collections. [C#v2+]
+25. Always explicitly initialize arrays of reference types using a for loop.
+26. Avoid boxing and unboxing value types.
+Example:
+int count = 1;
+object refCount = count; // Implicitly boxed.
+int newCount = (int)refCount; // Explicitly unboxed.
+27. Floating point values should include at least one digit before the decimal place and one after.
+Example: totalPercent = 0.05;
+28. Try to use the “@” prefix for string literals instead of escaped strings.
+29. Prefer String.Format() or StringBuilder over string concatenation.
+30. Never concatenate strings inside a loop.
+31. Do not compare strings to String.Empty or “” to check for empty strings. Instead, compare by using
+String.Length == 0.
+32. Avoid hidden string allocations within a loop. Use String.Compare() for case-sensitive 
+Example (ToLower() create a temp string)
+
+// Bad!
+int id = -1;
+string name = “john doe”;
+for(int i=0; i < customerList.Count; i++)
+{
+if(customerList[i].Name.ToLower() ToLower() ToLower() == name)
+ {
+ id = customerList[i].ID;
+ }
+}
+// Good!
+int id = -1;
+string name = “john doe”;
+for(int i=0; i < customerList.Count; i++)
+{
+// The “ignoreCase = true” argument performs a
+ // case-insensitive compare without new allocation.
+if(String.Compare String.Compare String.Compare(customerList[i].Name, name, true)== 0)
+ {
+ id = customerList[i].ID;
+ }
+}
+4.3 Flow Control
+33. Avoid invoking methods within a conditional expression.
+34. Avoid creating recursive methods. Use loops or nested loops instead.
+35. Avoid using foreach to iterate over immutable value-type collections. E.g. String arrays.
+36. Do not modify enumerated items within a foreach statement.
+37. Use the ternary conditional operator only for trivial conditions. Avoid complex or compound ternary operations.
+Example: int result = isValid ? 9 : 4;
+38. Avoid evaluating Boolean conditions against true or false.
+Example:
+// Bad!
+if (isValid == true)
+{…}
+// Good!
+if (isValid)
+{…}
+39. Avoid assignment within conditional statements.
+Example: if((i=2)==2) {…}
+40. Avoid compound conditional expressions – use Boolean variables to split parts into multiple manageable
+expressions.
+Example:
+// Bad!
+if (((value > _highScore) && (value != _highScore)) && (value < _maxScore))
+{…}
+// Good!
+isHighScore = (value >= _highScore);
+isTiedHigh = (value == _highScore);
+isValid = (value < _maxValue);
+if ((isHighScore && ! isTiedHigh) && isValid)
+{…}
+41. Avoid explicit Boolean tests in conditionals.
+Example:
+// Bad!
+if(IsValid == true)
+{…};
+// Good!
+if(IsValid)
+{…}
+42. Only use switch/case statements for simple operations with parallel conditional logic.
+43. Prefer nested if/else over switch/case for short conditional sequences and complex conditions.
+44. Prefer polymorphism over switch/case to encapsulate and delegate complex operations.
+4.4 Exceptions
+45. Do not use try/catch blocks for flow-control.
+46. Only catch exceptions that you can handle.
+47. Never declare an empty catch block.
+48. Avoid nesting a try/catch within a catch block.
+49. Always catch the most derived exception via exception filters.
+50. Order exception filters from most to least derived exception type.
+51. Avoid re-throwing an exception. Allow it to bubble-up instead.
+52. If re-throwing an exception, preserve the original call stack by omitting the exception argument from the throw
+statement.
+Example:
+// Bad!
+catch(Exception ex)
+{
+ Log(ex);
+throw ex;
+}
+// Good!
+catch(Exception)
+{
+ Log(ex);
+throw;
+}
+53. Only use the finally block to release resources from a try statement. 
+54. Always use validation to avoid exceptions.
+Example:
+// Bad!
+try
+{
+ conn.Close();
+}
+Catch(Exception ex)
+{
+ // handle exception if already closed!
+}
+// Good!
+if(conn.State != ConnectionState.Closed)
+{
+ conn.Close();
+}
+55. Always set the innerException property on thrown exceptions so the exception chain & call stack are
+maintained.
+56. Avoid defining custom exception classes. Use existing exception classes instead.
+57. When a custom exception is required;
+a. Always derive from Exception not ApplicationException.
+b. Always suffix exception class names with the word “Exception”.
+c. Always add the SerializableAttribute to exception classes.
+d. Always implement the standard “Exception Constructor Pattern”:
+public MyCustomException ();
+public MyCustomException (string message);
+public MyCustomException (string message, Exception innerException);
+e. Always implement the deserialization constructor:
+protected MyCustomException(SerializationInfo info, StreamingContext contxt);
+58. Always set the appropriate HResult value on custom exception classes.
+(Note: the ApplicationException HResult = -2146232832)
+59. When defining custom exception classes that contain additional properties:
+a. Always override the Message property, ToString() method and the implicit operator string
+to include custom property values.
+b. Always modify the deserialization constructor to retrieve custom property values.
+c. Always override the GetObjectData(…) method to add custom properties to the serialization collection.
+Example:
+public override void GetObjectData(SerializationInfo info,
+ StreamingContext context)
+{
+ base.GetObjectData (info, context);
+info.AddValue("MyValue", _myValue);
+} 
+
+4.5 Events, Delegates, & Threading
+60. Always check Event & Delegate instances for null before invoking.
+61. Use the default EventHandler and EventArgs for most simple events.
+62. Always derive a custom EventArgs class to provide additional data.
+63. Use the existing CancelEventArgs class to allow the event subscriber to control events.
+64. Always use the “lock” keyword instead of the Monitor type.
+65. Only lock on a private or private static object.
+Example: lock(myVariable);
+66. Avoid locking on a Type.
+Example: lock(typeof(MyClass));
+67. Avoid locking on the current object instance.
+Example: lock(this); 
+
+4.6 Object Composition
+68. Always declare types explicitly within a namespace. Do not use the default “{global}” namespace.
+69. Avoid overuse of the public access modifier. Typically fewer than 10% of your types and members will be
+part of a public API, unless you are writing a class library.
+70. Consider using internal or private access modifiers for types and members unless you intend to support
+them as part of a public API.
+71. Never use the protected access modifier within sealed classes unless overriding a protected member of
+an inherited type.
+72. Avoid declaring methods with more than 5 parameters. Consider refactoring this code.
+73. Try to replace large parameter-sets (> than 5 parameters) with one or more class or struct parameters –
+especially when used in multiple method signatures.
+74. Do not use the “new” keyword on method and property declarations to hide members of a derived type.
+75. Only use the “base” keyword when invoking a base class constructor or base implementation within an
+override.
+76. Consider using method overloading instead of the params attribute (but be careful not to break CLS
+Compliance of your API’s).
+77. Always validate an enumeration variable or parameter value before consuming it. They may contain any value
+that the underlying Enum type (default int) supports.
+Example: Example
+public void Test(BookCategory cat)
+{
+if (Enum.IsDefined(typeof(BookCategory), cat))
+ {…}
+}
+78. Consider overriding Equals() on a struct.
+79. Always override the Equality Operator (==) when overriding the Equals() method.
+80. Always override the String Implicit Operator when overriding the ToString() method.
+81. Always call Close() or Dispose() on classes that offer it.
+82. Wrap instantiation of IDisposable objects with a “using” statement to ensure that Dispose() is
+automatically called.
+Example:
+using(SqlConnection cn = new SqlConnection(_connectionString))
+{…} 
+83. Always implement the IDisposable interface & pattern on classes referencing external resources.
+Example: (shown with optional Finalizer)
+
+public void Dispose()
+{
+ Dispose(true);
+ GC.SuppressFinalize(this);
+}
+protected virtual void Dispose(bool disposing)
+{
+ if (disposing)
+ {
+ // Free other state (managed objects).
+ }
+ // Free your own state (unmanaged objects).
+ // Set large fields to null.
+}
+// C# finalizer. (optional)
+~Base()
+{
+ // Simply call Dispose(false).
+ Dispose (false);
+}
+84. Avoid implementing a Finalizer.
+Never define a Finalize() method as a finalizer. Instead use the C# destructor syntax.
+Example
+// Good
+~MyClass {…}
+// Bad
+void Finalize(){…}
+
+##5. Object Model & API Design
+1. Always prefer aggregation over inheritance.
+2. Avoid “Premature Generalization”. Create abstractions only when the intent is understood.
+3. Do the simplest thing that works, then refactor when necessary.
+4. Always make object-behavior transparent to API consumers.
+5. Avoid unexpected side-affects when properties, methods, and constructors are invoked.
+6. Always separate presentation layer from business logic.
+7. Always prefer interfaces over abstract classes.
+8. Try to include the design-pattern names such as “Bridge”, “Adapter”, or “Factory” as a suffix to class names
+where appropriate.
+9. Only make members virtual if they are designed and tested for extensibility.
+10. Refactor often! 
