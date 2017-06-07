@@ -346,10 +346,15 @@ info.AddValue("MyValue", _myValue);
 65. Only lock on a private or private static object.
 Example: lock(myVariable);
 66. Avoid locking on a Type.
-Example: lock(typeof(MyClass));
+Example: 
+```
+lock(typeof(MyClass));
+```
 67. Avoid locking on the current object instance.
-Example: lock(this); 
-
+Example: 
+```
+lock(this); 
+```
 ### Object Composition
 68. Always declare types explicitly within a namespace. Do not use the default “{global}” namespace.
 69. Avoid overuse of the public access modifier. Typically fewer than 10% of your types and members will be
@@ -369,11 +374,13 @@ Compliance of your API’s).
 77. Always validate an enumeration variable or parameter value before consuming it. They may contain any value
 that the underlying Enum type (default int) supports.
 Example: Example
+```
 public void Test(BookCategory cat)
 {
 if (Enum.IsDefined(typeof(BookCategory), cat))
  {…}
 }
+```
 78. Consider overriding Equals() on a struct.
 79. Always override the Equality Operator (==) when overriding the Equals() method.
 80. Always override the String Implicit Operator when overriding the ToString() method.
@@ -381,11 +388,13 @@ if (Enum.IsDefined(typeof(BookCategory), cat))
 82. Wrap instantiation of IDisposable objects with a “using” statement to ensure that Dispose() is
 automatically called.
 Example:
+```
 using(SqlConnection cn = new SqlConnection(_connectionString))
-{…} 
+{…}
+```
 83. Always implement the IDisposable interface & pattern on classes referencing external resources.
 Example: (shown with optional Finalizer)
-
+```
 public void Dispose()
 {
  Dispose(true);
@@ -406,13 +415,16 @@ protected virtual void Dispose(bool disposing)
  // Simply call Dispose(false).
  Dispose (false);
 }
+```
 84. Avoid implementing a Finalizer.
 Never define a Finalize() method as a finalizer. Instead use the C# destructor syntax.
 Example
+```
 // Good
 ~MyClass {…}
 // Bad
 void Finalize(){…}
+```
 
 ## Object Model & API Design
 1. Always prefer aggregation over inheritance.
