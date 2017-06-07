@@ -263,7 +263,8 @@ if(IsValid)
 42. Only use switch/case statements for simple operations with parallel conditional logic.
 43. Prefer nested if/else over switch/case for short conditional sequences and complex conditions.
 44. Prefer polymorphism over switch/case to encapsulate and delegate complex operations.
-4.4 Exceptions
+
+### Exceptions
 45. Do not use try/catch blocks for flow-control.
 46. Only catch exceptions that you can handle.
 47. Never declare an empty catch block.
