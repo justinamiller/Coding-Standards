@@ -1,6 +1,6 @@
 # Coding-Standards For C#
 
-##Naming Conventions
+## Naming Conventions
 Consistency is the key to maintainable code. This statement is most true for naming your projects, source files, and
 identifiers including Fields, Variables, Properties, Methods, Parameters, Classes, Interfaces, and Namespaces.
 2.1 General Guidelines
@@ -35,7 +35,7 @@ appropriate.
 20. When defining a root namespace, use a Product, Company, or Developer Name as the root. Example:
 My.StringUtilities
 
-##Coding Style
+## Coding Style
 Coding style causes the most inconsistency and controversy between developers. Each developer has a preference, and
 rarely are two the same. However, consistent layout, format, and organization are key to creating maintainable code.
 The following sections describe the preferred way to implement C# source code in order to create readable, clear, and
@@ -120,7 +120,7 @@ Example:
 /// ]]></code> >
 /// </example> 
 
-##Language Usage
+## Language Usage
 4.1 General
 1. Do not omit access modifiers. Explicitly declare all identifiers with the appropriate access modifier instead of
 allowing the default.
@@ -399,7 +399,7 @@ Example
 // Bad
 void Finalize(){…}
 
-##5. Object Model & API Design
+## 5. Object Model & API Design
 1. Always prefer aggregation over inheritance.
 2. Avoid “Premature Generalization”. Create abstractions only when the intent is understood.
 3. Do the simplest thing that works, then refactor when necessary.
