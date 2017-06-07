@@ -138,6 +138,27 @@ appropriate.
 My.StringUtilities
 ```
 
+### Name Usage & Syntax
+|Identifier | Naming Convention |
+|-----------|-------------------|
+|Project File | Pascal Case. Always match Assembly Name & Root Namespace. Example: ``` My.Web.csproj -> My.Web.dll -> namespace My.Web ``` |
+|Source File | Pascal Case. Always match Class name and file name. Avoid including more than one Class, Enum (global), or Delegate (global) per file. Use a descriptive file name when containing multiple Class, Enum, or Delegates. Example: ``` MyClass.cs => public class MyClass  {…} ```|
+|Resource or Embedded File | Try to use Pascal Case. Use a name describing the file contents. |
+|Namespace | Pascal Case. Try to partially match Project/Assembly Name. Example: ``` namespace My.Web {…} ```
+|Class or Struct | Pascal Case. Use a noun or noun phrase for class name. Add an appropriate class-suffix when sub-classing another type when possible. Examples: ``` private class MyClass {…} internal class SpecializedAttribute : Attribute {…} public class CustomerCollection : CollectionBase {…} public class CustomEventArgs : EventArgs {…} private struct ApplicationSettings {…} ``` |
+|Interface | Pascal Case. Always prefix interface name with capital “I”. Example: ``` interface ICustomer {…} ``` |
+| Generic Class & Generic Parameter Type |Always use a single capital letter, such as T or K. Example: ``` public class FifoStack<T> { public void Push(<T> obj) {…} public <T> Pop() {…} } ``` |
+|Method | Pascal Case. Try to use a Verb or Verb-Object pair. Example: ``` public void Execute() {…} private string GetAssemblyVersion(Assembly target) {…} ``` |
+|Property | Pascal Case. Property name should represent the entity it returns. Never prefix property names with “Get” or “Set”. Example: ```public string Name { get{…} set{…} } ``` |
+|Field (Public, Protected, or Internal) | Pascal Case. Avoid using non-private Fields! Use Properties instead. Example: ``` public string Name; protected IList InnerList; ``` |
+|Field (Private) | Camel Case and prefix with a single underscore (_) character. Example: ``` private string _name; ``` |
+|Constant or Static Field | Treat like a Field. Choose appropriate Field access-modifier above. |
+|Enum | Pascal Case (both the Type and the Options). Add the FlagsAttribute to bit-mask multiple options. Example: ``` public enum CustomerTypes { Consumer, Commercial } ``` |
+|Delegate or Event | Treat as a Field. Choose appropriate Field access-modifier above. Example: ``` public event EventHandler LoadPlugin; ``` |
+|Variable (inline) | Camel Case. Avoid using single characters like “x” or “y” except in FOR loops. Avoid enumerating variable names like text1, text2, text3 etc. |
+|Parameter | Camel Case. Example: ``` public void Execute(string commandText, int iterations) {…} ``` |
+
+
 ## Coding Style
 Coding style causes the most inconsistency and controversy between developers. Each developer has a preference, and
 rarely are two the same. However, consistent layout, format, and organization are key to creating maintainable code.
