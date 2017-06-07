@@ -321,7 +321,7 @@ DataSet ds = dataObject as DataSet;
 if(ds != null)
 {…}
 ```
-24. Always prefer C# Generic collection types over standard or strong-typed collections. [C#v2+]
+24. Always prefer C# Generic collection types over standard or strong-typed collections.
 25. Always explicitly initialize arrays of reference types using a for loop.
 26. Avoid boxing and unboxing value types.
 Example:
