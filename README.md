@@ -16,14 +16,17 @@ are addressed here to ensure greater consistency and maintainability of source c
 
 ### Terminology & Definitions
 The following terminology is referenced throughout this document:
-Access Modifier
+
+#### Access Modifier
 C# keywords public, protected, internal, and private declare the allowed code-accessibility of types
 and their members. Although default access modifiers vary, classes and most other members use the default
 of private. Notable exceptions are interfaces and enums which both default to public.
-Camel Case
+
+#### Camel Case
 A word with the first letter lowercase, and the first letter of each subsequent word-part capitalized.
  Example: customerName
-Common Type System
+ 
+#### Common Type System
 The .NET Framework common type system (CTS) defines how types are declared, used, and managed. All
 native C# types are based upon the CTS to ensure support for cross-language integration.
 Identifier
@@ -32,14 +35,17 @@ A developer defined token used to uniquely name a declared object or object inst
  ```
  public class MyClassName MyClassNameIdentifier Identifier { … }
  ```
-Magic Number
+ 
+#### Magic Number
 Any numeric literal used within an expression (or to initialize a variable) that does not have an obvious or wellknown
 meaning. This usually excludes the integers 0 or 1 and any other numeric equivalent precision that
 evaluates as zero.
-Pascal Case
+
+#### Pascal Case
 A word with the first letter capitalized, and the first letter of each subsequent word-part capitalized.
  Example: CustomerName
-Premature Generalization
+
+#### Premature Generalization
 As it applies to object model design; this is the act of creating abstractions within an object model not based
 upon concrete requirements or a known future need for the abstraction. In simplest terms: “Abstraction for
 the sake of Abstraction.” 
