@@ -3,7 +3,7 @@
 ## Naming Conventions
 Consistency is the key to maintainable code. This statement is most true for naming your projects, source files, and
 identifiers including Fields, Variables, Properties, Methods, Parameters, Classes, Interfaces, and Namespaces.
-2.1 General Guidelines
+### General Guidelines
 1. Always use Camel Case or Pascal Case names.
 2. Avoid ALL CAPS and all lowercase names. Single lowercase words or letters are acceptable.
 3. Do not create declarations of the same type (namespace, class, method, property, field, or parameter) and
@@ -40,7 +40,7 @@ Coding style causes the most inconsistency and controversy between developers. E
 rarely are two the same. However, consistent layout, format, and organization are key to creating maintainable code.
 The following sections describe the preferred way to implement C# source code in order to create readable, clear, and
 consistent code that is easy to understand and maintain.
-3.1 Formatting
+### Formatting
 1. Never declare more than 1 namespace per file.
 2. Avoid putting multiple classes in a single file.
 3. Always place curly braces ({ and }) on a new line.
@@ -84,7 +84,7 @@ public class MyClass
 19. Place Parameter attribute declarations inline with the parameter.
 20. If in doubt, always err on the side of clarity and consistency. 
 
-3.2 Code Commenting
+### Code Commenting
 21. All comments should be written in the same language, be grammatically correct, and contain appropriate
 punctuation.
 22. Use // or /// but never /* … */
@@ -121,7 +121,7 @@ Example:
 /// </example> 
 
 ## Language Usage
-4.1 General
+### General
 1. Do not omit access modifiers. Explicitly declare all identifiers with the appropriate access modifier instead of
 allowing the default.
 Example:
@@ -322,7 +322,7 @@ public override void GetObjectData(SerializationInfo info,
 info.AddValue("MyValue", _myValue);
 } 
 
-4.5 Events, Delegates, & Threading
+### Events, Delegates, & Threading
 60. Always check Event & Delegate instances for null before invoking.
 61. Use the default EventHandler and EventArgs for most simple events.
 62. Always derive a custom EventArgs class to provide additional data.
@@ -335,7 +335,7 @@ Example: lock(typeof(MyClass));
 67. Avoid locking on the current object instance.
 Example: lock(this); 
 
-4.6 Object Composition
+### Object Composition
 68. Always declare types explicitly within a namespace. Do not use the default “{global}” namespace.
 69. Avoid overuse of the public access modifier. Typically fewer than 10% of your types and members will be
 part of a public API, unless you are writing a class library.
@@ -399,7 +399,7 @@ Example
 // Bad
 void Finalize(){…}
 
-## 5. Object Model & API Design
+## Object Model & API Design
 1. Always prefer aggregation over inheritance.
 2. Avoid “Premature Generalization”. Create abstractions only when the intent is understood.
 3. Do the simplest thing that works, then refactor when necessary.
