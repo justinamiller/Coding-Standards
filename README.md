@@ -192,6 +192,7 @@ String.Length == 0.
 32. Avoid hidden string allocations within a loop. Use String.Compare() for case-sensitive 
 Example (ToLower() create a temp string)
 
+```
 // Bad!
 int id = -1;
 string name = “john doe”;
@@ -214,7 +215,9 @@ if(String.Compare String.Compare String.Compare(customerList[i].Name, name, true
  id = customerList[i].ID;
  }
 }
-4.3 Flow Control
+```
+
+### Flow Control
 33. Avoid invoking methods within a conditional expression.
 34. Avoid creating recursive methods. Use loops or nested loops instead.
 35. Avoid using foreach to iterate over immutable value-type collections. E.g. String arrays.
@@ -223,17 +226,20 @@ if(String.Compare String.Compare String.Compare(customerList[i].Name, name, true
 Example: int result = isValid ? 9 : 4;
 38. Avoid evaluating Boolean conditions against true or false.
 Example:
+```
 // Bad!
 if (isValid == true)
 {…}
 // Good!
 if (isValid)
 {…}
+```
 39. Avoid assignment within conditional statements.
 Example: if((i=2)==2) {…}
 40. Avoid compound conditional expressions – use Boolean variables to split parts into multiple manageable
 expressions.
 Example:
+```
 // Bad!
 if (((value > _highScore) && (value != _highScore)) && (value < _maxScore))
 {…}
@@ -243,7 +249,9 @@ isTiedHigh = (value == _highScore);
 isValid = (value < _maxValue);
 if ((isHighScore && ! isTiedHigh) && isValid)
 {…}
+```
 41. Avoid explicit Boolean tests in conditionals.
+```
 Example:
 // Bad!
 if(IsValid == true)
@@ -251,6 +259,7 @@ if(IsValid == true)
 // Good!
 if(IsValid)
 {…}
+```
 42. Only use switch/case statements for simple operations with parallel conditional logic.
 43. Prefer nested if/else over switch/case for short conditional sequences and complex conditions.
 44. Prefer polymorphism over switch/case to encapsulate and delegate complex operations.
@@ -265,6 +274,7 @@ if(IsValid)
 52. If re-throwing an exception, preserve the original call stack by omitting the exception argument from the throw
 statement.
 Example:
+```
 // Bad!
 catch(Exception ex)
 {
@@ -277,9 +287,11 @@ catch(Exception)
  Log(ex);
 throw;
 }
+```
 53. Only use the finally block to release resources from a try statement. 
 54. Always use validation to avoid exceptions.
 Example:
+```
 // Bad!
 try
 {
@@ -294,6 +306,7 @@ if(conn.State != ConnectionState.Closed)
 {
  conn.Close();
 }
+```
 55. Always set the innerException property on thrown exceptions so the exception chain & call stack are
 maintained.
 56. Avoid defining custom exception classes. Use existing exception classes instead.
@@ -315,12 +328,14 @@ to include custom property values.
 b. Always modify the deserialization constructor to retrieve custom property values.
 c. Always override the GetObjectData(…) method to add custom properties to the serialization collection.
 Example:
+```
 public override void GetObjectData(SerializationInfo info,
  StreamingContext context)
 {
  base.GetObjectData (info, context);
 info.AddValue("MyValue", _myValue);
 } 
+```
 
 ### Events, Delegates, & Threading
 60. Always check Event & Delegate instances for null before invoking.
