@@ -23,17 +23,24 @@ Example: strName or iCount
 15. Avoid naming conflicts with existing .NET Framework namespaces, or types.
 16. Avoid adding redundant or meaningless prefixes and suffixes to identifiers
 Example:
+```
 // Bad!
 public enum ColorsEnum {…}
 public class CVehicle {…}
 public struct RectangleStruct {…}
+```
 17. Do not include the parent class name within a property name.
-Example: Customer.Name NOT Customer.CustomerName
+Example: 
+```
+Customer.Name NOT Customer.CustomerName
+```
 18. Try to prefix Boolean variables and properties with “Can”, “Is” or “Has”.
 19. Append computational qualifiers to variable names like Average, Count, Sum, Min, and Max where
 appropriate.
 20. When defining a root namespace, use a Product, Company, or Developer Name as the root. Example:
+```
 My.StringUtilities
+```
 
 ## Coding Style
 Coding style causes the most inconsistency and controversy between developers. Each developer has a preference, and
@@ -67,6 +74,7 @@ d. Private
 14. Only declare related attribute declarations on a single line, otherwise stack each attribute as a separate
 declaration.
 Example:
+```
 // Bad!
 [Attrbute1, Attrbute2, Attrbute3]
 public class MyClass
@@ -77,6 +85,7 @@ public class MyClass
 [Attrbute4]
 public class MyClass
 {…}
+```
 15. Place Assembly scope attribute declarations on a separate line.
 16. Place Type scope attribute declarations on a separate line.
 17. Place Method scope attribute declarations on a separate line.
@@ -90,17 +99,21 @@ punctuation.
 22. Use // or /// but never /* … */
 23. Do not “flowerbox” comment blocks.
 Example:
+```
  // ***************************************
  // Comment block
  // ***************************************
+ ```
 24. Use inline-comments to explain assumptions, known issues, and algorithm insights.
 25. Do not use inline-comments to explain obvious code. Well written code is self documenting.
 26. Only use comments for bad code to say “fix this code” – otherwise remove, or rewrite the code!
 27. Include comments using Task-List keyword flags to allow comment-filtering.
 Example:
+```
 // TODO: Place Database Code Here
 // UNDONE: Removed P\Invoke Call due to errors
 // HACK: Temporary fix until able to refactor
+```
 28. Always apply C# comment-blocks (///) to public, protected, and internal declarations.
 29. Only use C# comment-blocks for documenting the API.
 30. Always include <summary> comments. Include <param>, <return>, and <exception> comment
@@ -109,6 +122,7 @@ sections where applicable.
 32. Always add CDATA tags to comments containing code and other embedded markup in order to avoid
 encoding issues.
 Example:
+```
 /// <example>
 /// Add the following key to the “appSettings” section of your config:
 /// <code><![CDATA[
@@ -119,27 +133,32 @@ Example:
 /// </configuration>
 /// ]]></code> >
 /// </example> 
+```
 
 ## Language Usage
 ### General
 1. Do not omit access modifiers. Explicitly declare all identifiers with the appropriate access modifier instead of
 allowing the default.
 Example:
+```
 // Bad!
 Void WriteEvent(string message)
 {…}
 // Good!
 private Void WriteEvent(string message)
 {…}
+```
 2. Do not use the default (“1.0.*”) versioning scheme. Increment the AssemblyVersionAttribute value
 manually.
 3. Set the ComVisibleAttribute to false for all assemblies.
 4. Only selectively enable the ComVisibleAttribute for individual classes when needed.
 Example:
+```
 [assembly: ComVisible(false)]
 [ComVisible(true)]
 public MyClass
 {…}
+```
 5. Consider factoring classes containing unsafe code blocks into a separate assembly.
 6. Avoid mutual references between assemblies.
 4.2 Variables & Types
@@ -147,10 +166,12 @@ public MyClass
 8. Always choose the simplest data type, list, or object required.
 9. Always use the built-in C# data type aliases, not the .NET common type system (CTS).
 Example:
+```
 short NOT System.Int16
 int NOT System.Int32
 long NOT System.Int64
 string NOT System.String
+```
 10. Only declare member variables as private. Use properties to provide access to them with public,
 protected, or internal access modifiers.
 11. Try to use int for any non-fractional numeric values that will fit the int datatype - even variables for nonnegative
@@ -171,17 +192,21 @@ data sources.
 22. Only declare constants for simple types.
 23. Avoid direct casts. Instead, use the “as” operator and check for null.
 Example:
+```
 object dataObject = LoadData();
 DataSet ds = dataObject as DataSet;
 if(ds != null)
 {…}
+```
 24. Always prefer C# Generic collection types over standard or strong-typed collections. [C#v2+]
 25. Always explicitly initialize arrays of reference types using a for loop.
 26. Avoid boxing and unboxing value types.
 Example:
+```
 int count = 1;
 object refCount = count; // Implicitly boxed.
 int newCount = (int)refCount; // Explicitly unboxed.
+```
 27. Floating point values should include at least one digit before the decimal place and one after.
 Example: totalPercent = 0.05;
 28. Try to use the “@” prefix for string literals instead of escaped strings.
