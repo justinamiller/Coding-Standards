@@ -1,4 +1,4 @@
-# Coding-Standards For C#
+# Coding-Standards for C#
 
 ## Introduction
 This document describes rules and recommendations for developing applications and class libraries using the C#
