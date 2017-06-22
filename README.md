@@ -587,3 +587,65 @@ void Finalize(){…}
 where appropriate.
 9. Only make members virtual if they are designed and tested for extensibility.
 10. Refactor often! 
+
+
+## Redundancy
+**Minimize redundant code**
+1. If you repeat the same code two or more times, find a way to remove the redundant code so that it appears only once. For example, place it into a helper function that is called from both places. If the repeated code is nearly but not entirely the same, try making your helper function accept a parameter to represent the differing part.
+````
+// bad
+foo();
+x = 10;
+y++;
+...
+
+foo();
+x = 15;
+y++;
+
+// good
+helper(10);
+helper(15);
+...
+
+void helper(int newX) {
+    foo();
+    x = newX;
+    y++;
+}
+````
+**if/else factoring**
+2. Move common code out of if/else statements so that it is not repeated.
+````
+// bad
+if (x < y) {
+    foo();
+    x++;
+    Console.Write("hi");
+} else {
+    foo();
+    y++;
+   Console.Write("hi");
+}
+
+// good
+foo();
+if (x < y) {
+    x++;
+} else {
+    y++;
+}
+Console.Write("hi");
+````
+**Function structure**
+3. If you have a single function that is very long, break it apart into smaller sub-functions. The definition of "very long" is vague, but let's say a function longer than 40-50 lines is pushing it. If you try to describe the function's purpose and find yourself using the word "and" a lot, that probably means the function does too many things and should be split into sub-functions.
+
+## Functions and Procedural Design
+**Designing a good function**
+ A well-designed function exhibits properties such as the following:
+* Fully performs a single coherent task.
+* Does not do too large a share of the work.
+* Is not unnecessarily connected to other functions.
+* Stores data at the narrowest scope possible.
+* Helps indicate and subdivide the structure of the overall program.
+* Helps remove redundancy that would otherwise be present in the overall program.
