@@ -642,6 +642,7 @@ Console.Write("hi");
 
 ## Functions and Procedural Design
 **Designing a good function**
+
  A well-designed function exhibits properties such as the following:
 * Fully performs a single coherent task.
 * Does not do too large a share of the work.
@@ -649,3 +650,39 @@ Console.Write("hi");
 * Stores data at the narrowest scope possible.
 * Helps indicate and subdivide the structure of the overall program.
 * Helps remove redundancy that would otherwise be present in the overall program.
+
+**Avoid "chaining" calls**
+Where many functions call each other in a chain without ever returning to main. Make sure that main is a concise summary of your overall program.
+````
+// bad
+main
+|
++-- function1
+    |
+    +-- function2
+        |
+        +-- function3
+            |
+            +-- function4
+            |
+            +-- function5
+                |
+                +-- function6
+                
+// good
+main
+|
++-- function1
+|
++-- function2
+|   |
+|   +-- function3
+|       |
+|       +-- function4
+|
++-- function5
+|   |
+|   +-- function6                
+````
+
+
