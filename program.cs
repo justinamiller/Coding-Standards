@@ -1,7 +1,4 @@
 class program
 {
-public program()
-{
-
-}
+   public program()  {}
 }
