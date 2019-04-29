@@ -29,7 +29,8 @@ A word with the first letter lowercase, and the first letter of each subsequent 
 #### Common Type System
 The .NET Framework common type system (CTS) defines how types are declared, used, and managed. All
 native C# types are based upon the CTS to ensure support for cross-language integration.
-Identifier
+
+#### Identifier
 A developer defined token used to uniquely name a declared object or object instance.
  Example: 
  ```
