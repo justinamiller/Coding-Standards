@@ -29,7 +29,8 @@ A word with the first letter lowercase, and the first letter of each subsequent 
 #### Common Type System
 The .NET Framework common type system (CTS) defines how types are declared, used, and managed. All
 native C# types are based upon the CTS to ensure support for cross-language integration.
-Identifier
+
+#### Identifier
 A developer defined token used to uniquely name a declared object or object instance.
  Example: 
  ```
@@ -239,9 +240,9 @@ Example:
 ```
 28. Always apply C# comment-blocks (///) to public, protected, and internal declarations.
 29. Only use C# comment-blocks for documenting the API.
-30. Always include <summary> comments. Include <param>, <return>, and <exception> comment
+30. Always include <summary> comments. Include `<param>`, `<return>`, and `<exception>` comment
 sections where applicable.
-31. Include <see cref=””/> and <seeAlso cref=””/> where possible.
+31. Include `<see cref=""/>` and `<seeAlso cref=""/>` where possible.
 32. Always add CDATA tags to comments containing code and other embedded markup in order to avoid
 encoding issues.
 Example:
@@ -251,7 +252,7 @@ Example:
 /// <code><![CDATA[
 /// <configuration>
 /// <appSettings>
-/// <add key=”mySetting” value=”myValue”/>
+/// <add key="mySetting" value="myValue"/>
 /// </appSettings>
 /// </configuration>
 /// ]]></code> >
